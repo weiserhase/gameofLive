@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="editor.css" />
+    <title>game of life editor</title>
+  </head>
+  <body>
+    <nav></nav>
+    <div class="grid-wrapper">
+      <div class="grid"></div>
+    </div>
+    <script>
+      const dimensions = 20;
+
+      const aliveMap = Array(dimensions).map(() =>
+        Array(dimensions).map(() => 0)
+      );
+
+      function toggleCell(e) {
+        const cell = e.currentTarget;
+
+        if (cell.classList.contains("alive")) return killCell(cell);
+        reviveCell(cell);
+      }
+
+      function killCell(cell) {
+        cell.classList.remove("alive");
+
+        const { x, y } = cell.dataset;
+        aliveMap[(x, y)] = 0;
+      }
+      function reviveCell(cell) {
+        cell.classList.add("alive");
+
+        const { x, y } = cell.dataset;
+        aliveMap[(x, y)] = 1;
+      }
+
+      //add cells
+      document.body.style.setProperty("--dimensions", dimensions);
+      for (let x = 0; x < dimensions; x++) {
+        for (let y = 0; y < dimensions; y++) {
+          const element = document.createElement("div");
+          element.dataset.x = x;
+          element.dataset.y = y;
+          element.addEventListener("click", toggleCell);
+
+          document.getElementsByClassName("grid")[0].appendChild(element);
+        }
+      }
+
+      class API {}
+    </script>
+  </body>
+</html>

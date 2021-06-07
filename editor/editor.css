@@ -1,0 +1,35 @@
+* {
+  border: none;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  background-color: gray;
+}
+
+.grid-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--dimensions), 1fr);
+  grid-template-rows: repeat(var(--dimensions), 1fr);
+  width: 100vmin;
+  height: 100vmin;
+  grid-gap: 1px;
+}
+.grid > div {
+  background-color: black;
+}
+.grid > div.alive {
+  background-color: white;
+}
